@@ -1,0 +1,10 @@
+dictionary GPUTextureDescriptor {
+    required sequence<unsigned long> size;
+    required unsigned long usage;
+};
+
+[SecureContext, Exposed=(Window,Worker), ImplementedIn=Rust]
+interface GPUTexture {
+    GPUTextureView createView();
+    undefined destroy();
+};

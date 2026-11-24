@@ -22,6 +22,7 @@
 #include <LibWeb/MediaCapabilitiesAPI/MediaCapabilities.h>
 #include <LibWeb/MediaCapture/MediaDevices.h>
 #include <LibWeb/StorageAPI/NavigatorStorage.h>
+#include <LibWeb/WebGPU/NavigatorGPU.h>
 #include <LibWeb/WebLocks/NavigatorLocks.h>
 
 namespace Web::HTML {
@@ -37,6 +38,7 @@ class Navigator
     , public NavigatorLanguageMixin
     , public NavigatorOnLineMixin
     , public StorageAPI::NavigatorStorage
+    , public WebGPU::NavigatorGPU
     , public WebLocks::NavigatorLocks {
     WEB_WRAPPABLE(Navigator, Bindings::GCAllocatedWrappable);
     GC_DECLARE_ALLOCATOR(Navigator);
@@ -95,6 +97,10 @@ private:
     virtual EnvironmentSettingsObject& navigator_storage_settings_object() const override;
 
     GC::Ref<Window> m_window;
+
+    // ^WebGPU::NavigatorGPU
+    virtual Bindings::Wrappable const& this_navigator_gpu_object() const override { return *this; }
+    virtual EnvironmentSettingsObject& this_navigator_gpu_settings_object() const override { return navigator_storage_settings_object(); }
 
     // ^WebLocks::NavigatorLocks
     virtual Bindings::Wrappable const& this_navigator_locks_object() const override { return *this; }

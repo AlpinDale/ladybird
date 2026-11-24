@@ -39,6 +39,7 @@
 #include <LibWeb/ServiceWorker/ServiceWorker.h>
 #include <LibWeb/ServiceWorker/ServiceWorkerRegistration.h>
 #include <LibWeb/StorageAPI/StorageManager.h>
+#include <LibWeb/WebGPU/GPU.h>
 #include <LibWeb/WebLocks/LockManager.h>
 #include <LibWebCommon/SecureContexts/AbstractOperations.h>
 
@@ -93,6 +94,7 @@ void EnvironmentSettingsObject::visit_edges(Cell::Visitor& visitor)
     visitor.visit(m_module_map);
     m_realm_execution_context->visit_edges(visitor);
     visitor.visit(m_storage_manager);
+    visitor.visit(m_gpu);
     visitor.visit(m_lock_manager);
     visitor.visit(m_service_worker_registration_object_map);
     visitor.visit(m_service_worker_object_map);
@@ -778,6 +780,13 @@ GC::Ref<StorageAPI::StorageManager> EnvironmentSettingsObject::storage_manager()
     if (!m_storage_manager)
         m_storage_manager = StorageAPI::StorageManager::create(realm());
     return *m_storage_manager;
+}
+
+GC::Ref<WebGPU::GPU> EnvironmentSettingsObject::gpu()
+{
+    if (!m_gpu)
+        m_gpu = WebGPU::GPU::create(*this);
+    return *m_gpu;
 }
 
 GC::Ref<WebLocks::LockManager> EnvironmentSettingsObject::lock_manager()

@@ -18,6 +18,8 @@ libcompositing_rust = { path = "../../../Libraries/LibCompositing/Rust" }
 libgfx_rust = { path = "../../../Libraries/LibGfx/Rust", default-features = false }
 libipc_rust = { path = "../../../Libraries/LibIPC/Rust" }
 rustc-demangle = "0.1"
+wgpu-core = { version = "30.0.2", features = ["wgsl", "metal", "vulkan", "dx12"] }
+wgpu-types = "30.0.2"
 
 [build-dependencies]
 cbindgen = "0.29"

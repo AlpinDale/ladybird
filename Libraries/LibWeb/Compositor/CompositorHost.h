@@ -135,6 +135,7 @@ public:
     Optional<Canvas2DTransport> create_canvas_2d_transport();
     void flush_canvas_2d_stream();
     void discard_canvas_2d_stream();
+    CompositorConnection* ref_compositor_connection() const;
 
     Optional<PlaceholderCanvasLink> allocate_placeholder_canvas();
     void release_placeholder_canvas(Compositing::CanvasId);

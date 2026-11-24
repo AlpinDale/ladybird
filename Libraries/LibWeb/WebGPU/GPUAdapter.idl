@@ -1,0 +1,11 @@
+dictionary GPUDeviceDescriptor {
+    record<DOMString, unsigned long long?> requiredLimits;
+};
+
+[SecureContext, Exposed=(Window,Worker), ImplementedIn=Rust]
+interface GPUAdapter {
+    [SameObject] readonly attribute object features;
+    [SameObject] readonly attribute object limits;
+    [SameObject] readonly attribute object info;
+    Promise<GPUDevice> requestDevice(optional GPUDeviceDescriptor descriptor = {});
+};

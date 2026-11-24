@@ -206,6 +206,15 @@ bool CompositorHost::rasterize_image(Layout::RustFFI::FfiImageRasterization cons
     return connection->rasterize_image(image, move(target));
 }
 
+CompositorConnection* CompositorHost::ref_compositor_connection() const
+{
+    auto* connection = compositor_connection();
+    if (!connection)
+        return nullptr;
+    connection->ref();
+    return connection;
+}
+
 bool CompositorHost::rasterize_last_recording(Layout::RustFFI::DocumentHost const& document_host, Layout::BegunRead const& read, NonnullRefPtr<Gfx::Bitmap> target) const
 {
     auto* connection = compositor_connection();

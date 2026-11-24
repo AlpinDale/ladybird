@@ -1,0 +1,7 @@
+[SecureContext, Exposed=(Window,Worker), ImplementedIn=Rust]
+interface GPUComputePassEncoder {
+    undefined setPipeline(GPUComputePipeline pipeline);
+    undefined setBindGroup(unsigned long index, GPUBindGroup? bindGroup);
+    undefined dispatchWorkgroups(unsigned long x, optional unsigned long y = 1, optional unsigned long z = 1);
+    undefined end();
+};

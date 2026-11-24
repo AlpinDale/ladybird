@@ -1240,6 +1240,13 @@ struct InputState;
 
 }
 
+namespace Web::WebGPU {
+
+class GPU;
+class NavigatorGPU;
+
+}
+
 namespace Web::WebLocks {
 
 class Lock;

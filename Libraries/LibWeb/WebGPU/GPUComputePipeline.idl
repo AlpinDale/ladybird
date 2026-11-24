@@ -1,0 +1,12 @@
+dictionary GPUProgrammableStage {
+    required GPUShaderModule module;
+};
+
+dictionary GPUComputePipelineDescriptor {
+    required GPUProgrammableStage compute;
+};
+
+[SecureContext, Exposed=(Window,Worker), ImplementedIn=Rust]
+interface GPUComputePipeline {
+    GPUBindGroupLayout getBindGroupLayout(unsigned long index);
+};

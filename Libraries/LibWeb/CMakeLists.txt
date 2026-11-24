@@ -871,6 +871,8 @@ set(SOURCES
     UIEvents/UIEvent.cpp
     UIEvents/WheelEvent.cpp
     ViewTransition/ViewTransition.cpp
+    WebGPU/GPU.cpp
+    WebGPU/NavigatorGPU.cpp
     WebLocks/AbstractOperations.cpp
     WebLocks/LockManager.cpp
     WebLocks/NavigatorLocks.cpp
