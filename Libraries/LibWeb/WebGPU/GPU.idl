@@ -1,0 +1,4 @@
+[SecureContext, Exposed=(Window,Worker), ImplementedIn=Rust]
+interface GPU {
+    Promise<GPUAdapter?> requestAdapter();
+};

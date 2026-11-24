@@ -143,6 +143,7 @@ public:
     SerializedEnvironmentSettingsObject serialize();
 
     GC::Ref<StorageAPI::StorageManager> storage_manager();
+    GC::Ref<WebGPU::GPU> gpu();
     GC::Ref<WebLocks::LockManager> lock_manager();
 
     // https://w3c.github.io/ServiceWorker/#get-the-service-worker-registration-object
@@ -198,6 +199,9 @@ private:
     // https://storage.spec.whatwg.org/#api
     // Each environment settings object has an associated StorageManager object.
     GC::Ptr<StorageAPI::StorageManager> m_storage_manager;
+
+    // https://gpuweb.github.io/gpuweb/#navigatorgpu
+    GC::Ptr<WebGPU::GPU> m_gpu;
 
     // https://w3c.github.io/web-locks/#navigator-mixins
     // Each environment settings object has a LockManager object.

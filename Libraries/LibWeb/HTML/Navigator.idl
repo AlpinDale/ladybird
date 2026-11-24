@@ -79,6 +79,7 @@ Navigator includes NavigatorPlugins;
 Navigator includes NavigatorConcurrentHardware;
 Navigator includes NavigatorAutomationInformation;
 Navigator includes NavigatorStorage;
+Navigator includes NavigatorGPU;
 Navigator includes NavigatorLocks;
 Navigator includes NavigatorDeviceMemory;
 

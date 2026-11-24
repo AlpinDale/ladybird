@@ -1,0 +1,5 @@
+// https://gpuweb.github.io/gpuweb/#navigatorgpu
+[SecureContext]
+interface mixin NavigatorGPU {
+    [SameObject] readonly attribute GPU gpu;
+};

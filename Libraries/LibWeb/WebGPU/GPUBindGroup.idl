@@ -1,0 +1,20 @@
+dictionary GPUBufferBinding {
+    required GPUBuffer buffer;
+    unsigned long long offset = 0;
+};
+
+typedef (GPUBufferBinding or GPUTextureView) GPUBindingResource;
+
+dictionary GPUBindGroupEntry {
+    required unsigned long binding;
+    required GPUBindingResource resource;
+};
+
+dictionary GPUBindGroupDescriptor {
+    required GPUBindGroupLayout layout;
+    required sequence<GPUBindGroupEntry> entries;
+};
+
+[SecureContext, Exposed=(Window,Worker), ImplementedIn=Rust]
+interface GPUBindGroup {
+};

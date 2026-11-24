@@ -96,6 +96,10 @@ endpoint CompositorWebContentServer
     // The pixels of the drawing buffer that the rect covers, as premultiplied BGRA8888 rows of the size answered.
     [RustReceiver, RustSender] webgl_read_back_drawing_buffer(Compositing::CanvasId canvas_id, Gfx::IntRect rect, Core::AnonymousBuffer pixels) => (Gfx::IntSize size)
 
+    // WebGPU compute and texture commands, handled in Rust by wgpu-core inside the Compositor process.
+    [RustReceiver, RustSender] webgpu_call(u8 op, ByteBuffer payload, Core::AnonymousBuffer buffer) => (bool ok, ByteBuffer payload)
+    [RustReceiver, RustSender] webgpu_post(u8 op, ByteBuffer payload, Core::AnonymousBuffer buffer) =|
+
     [RustReceiver] invalidate_wheel_event_listener_state(Web::CompositorContextId context_id, u64 generation) =|
     [RustReceiver] invalidate_keyboard_scroll_state(Web::CompositorContextId context_id, u64 generation) => ()
     [RustReceiver] take_wheel_event_from_main_thread(Web::CompositorContextId context_id, Web::MouseEvent event, Compositing::AsyncScrollOperationTracking operation_tracking, Compositing::WheelEventRouting routing) => (Compositing::WheelEventAnswer answer)

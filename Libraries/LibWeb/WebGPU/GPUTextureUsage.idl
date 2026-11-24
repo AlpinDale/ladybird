@@ -1,0 +1,6 @@
+[SecureContext, Exposed=(Window,Worker)]
+namespace GPUTextureUsage {
+    const unsigned long COPY_DST          = 0x02;
+    const unsigned long TEXTURE_BINDING   = 0x04;
+    const unsigned long RENDER_ATTACHMENT = 0x10;
+};

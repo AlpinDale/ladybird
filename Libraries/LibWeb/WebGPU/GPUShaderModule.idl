@@ -1,0 +1,7 @@
+dictionary GPUShaderModuleDescriptor {
+    required DOMString code;
+};
+
+[SecureContext, Exposed=(Window,Worker), ImplementedIn=Rust]
+interface GPUShaderModule {
+};

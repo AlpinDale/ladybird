@@ -39,6 +39,7 @@ pub mod scroll_snap_controller;
 pub mod scrollbar_controller;
 pub mod surfaces;
 pub mod webgl;
+pub mod webgpu;
 pub mod wheel_gesture_routing;
 
 #[cfg(test)]

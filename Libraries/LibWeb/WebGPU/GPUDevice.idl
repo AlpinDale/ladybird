@@ -1,0 +1,18 @@
+dictionary GPUBufferDescriptor {
+    required unsigned long long size;
+    required unsigned long usage;
+};
+
+[SecureContext, Exposed=(Window,Worker), ImplementedIn=Rust]
+interface GPUDevice {
+    [SameObject] readonly attribute object limits;
+    [SameObject] readonly attribute GPUQueue queue;
+    readonly attribute Promise<any> lost;
+    GPUBuffer createBuffer(GPUBufferDescriptor descriptor);
+    GPUTexture createTexture(GPUTextureDescriptor descriptor);
+    GPUShaderModule createShaderModule(GPUShaderModuleDescriptor descriptor);
+    GPUComputePipeline createComputePipeline(GPUComputePipelineDescriptor descriptor);
+    Promise<GPUComputePipeline> createComputePipelineAsync(GPUComputePipelineDescriptor descriptor);
+    GPUBindGroup createBindGroup(GPUBindGroupDescriptor descriptor);
+    GPUCommandEncoder createCommandEncoder();
+};

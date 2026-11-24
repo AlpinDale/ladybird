@@ -616,6 +616,7 @@ pub extern "C" fn compositor_core_forget_web_content_client(core: &CompositorCor
     let client = WebContentClientId(web_content_client_id);
     core.canvas_2d_contexts().forget_client(client);
     core.webgl_contexts().forget_client(client);
+    core.webgpu_contexts().forget_client(client);
 }
 
 #[unsafe(no_mangle)]

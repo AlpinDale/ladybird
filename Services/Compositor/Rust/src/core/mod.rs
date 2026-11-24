@@ -53,6 +53,7 @@ pub struct CompositorCore {
     remote_layers: RefCell<RemoteLayers>,
     canvas_2d_contexts: RefCell<crate::canvas_2d_contexts::Canvas2DContexts>,
     webgl_contexts: RefCell<crate::webgl::WebGLContexts>,
+    webgpu_contexts: RefCell<crate::webgpu::WebGPUContexts>,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -128,6 +129,7 @@ impl CompositorCore {
             remote_layers: RefCell::default(),
             canvas_2d_contexts: RefCell::default(),
             webgl_contexts: RefCell::default(),
+            webgpu_contexts: RefCell::default(),
         }
     }
 
@@ -156,6 +158,10 @@ impl CompositorCore {
 
     pub fn webgl_contexts(&self) -> std::cell::RefMut<'_, crate::webgl::WebGLContexts> {
         self.webgl_contexts.borrow_mut()
+    }
+
+    pub fn webgpu_contexts(&self) -> std::cell::RefMut<'_, crate::webgpu::WebGPUContexts> {
+        self.webgpu_contexts.borrow_mut()
     }
 
     /// Schedules what a message the core took asked for.

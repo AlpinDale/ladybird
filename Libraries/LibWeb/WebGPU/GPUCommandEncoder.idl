@@ -1,0 +1,6 @@
+[SecureContext, Exposed=(Window,Worker), ImplementedIn=Rust]
+interface GPUCommandEncoder {
+    GPUComputePassEncoder beginComputePass();
+    undefined copyBufferToBuffer(GPUBuffer source, unsigned long long sourceOffset, GPUBuffer destination, unsigned long long destinationOffset, unsigned long long size);
+    GPUCommandBuffer finish();
+};

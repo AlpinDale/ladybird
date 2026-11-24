@@ -1,0 +1,4 @@
+[SecureContext, Exposed=(Window,Worker)]
+namespace GPUMapMode {
+    const unsigned long READ = 0x0001;
+};

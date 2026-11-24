@@ -39,7 +39,8 @@ use libcompositing_rust::ipc_types::compositor_web_content_server::messages::{
     UpdateVisualContextTree, WebglClearDrawingBuffer, WebglCommands, WebglCommandsFromSharedBuffer,
     WebglDrainCommandBuffer, WebglDrainCommandBufferResponse, WebglPresentCanvas, WebglReadBackDrawingBuffer,
     WebglReadBackDrawingBufferResponse, WebglReadBufferSubData, WebglReadBufferSubDataResponse, WebglReadPixels,
-    WebglReadPixelsResponse, WebglSetCommandBuffer, WebglSyncCall, WebglSyncCallResponse, WheelEventCanceled,
+    WebglReadPixelsResponse, WebglSetCommandBuffer, WebglSyncCall, WebglSyncCallResponse, WebgpuCall,
+    WebgpuCallResponse, WebgpuPost, WheelEventCanceled,
     WheelEventLetThrough, WheelEventLetThroughResponse,
 };
 use libcompositing_rust::ipc_types::{
@@ -542,6 +543,20 @@ impl compositor_web_content_server::Stub for MessagesFromWebContent<'_> {
             )
             .map_err(misbehavior)?;
         Ok(WebglReadBackDrawingBufferResponse { size })
+    }
+
+    fn webgpu_call(&mut self, message: WebgpuCall) -> Result<WebgpuCallResponse, Misbehavior> {
+        let shm = self.map_shared_memory(message.buffer)?;
+        match self.core.webgpu_contexts().call(self.client_id, message.op, &message.payload, shm.as_ref()) {
+            Ok(payload) => Ok(WebgpuCallResponse { ok: true, payload }),
+            Err(error) => Ok(WebgpuCallResponse { ok: false, payload: error.into_bytes() }),
+        }
+    }
+
+    fn webgpu_post(&mut self, message: WebgpuPost) -> Result<(), Misbehavior> {
+        let shm = self.map_shared_memory(message.buffer)?;
+        self.core.webgpu_contexts().post(self.client_id, message.op, &message.payload, shm.as_ref());
+        Ok(())
     }
 
     fn update_display_list(&mut self, message: UpdateDisplayList) -> Result<(), Misbehavior> {
